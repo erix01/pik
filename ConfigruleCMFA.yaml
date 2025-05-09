@@ -51,7 +51,7 @@ proxies:
   - name: AKUN2
     server: 104.22.5.240
     port: 443
-    type: vless
+    type: vmess
     uuid: eae50e84-4b0e-49af-9208-5b75c3d39041
     cipher: auto
     tls: true
@@ -66,7 +66,7 @@ proxies:
   - name: AKUN3
     server: 104.22.5.240
     port: 443
-    type: vless
+    type: vmess
     uuid: de8108ad-998b-475a-8c46-1efaac1b0c4c
     cipher: auto
     tls: true
