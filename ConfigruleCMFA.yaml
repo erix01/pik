@@ -59,7 +59,7 @@ proxies:
     servername: id8.natanvpn.store
     network: ws
     ws-opts:
-      path: /jagoanssh
+      path: /upvmess
       headers:
         Host: id8.natanvpn.store
     udp: true
