@@ -32,71 +32,121 @@ dns:
     - 1.1.1.1
     - 112.215.203.254
 proxies:
-  - name: digi13
-    server: app.gopay.co.id
+  - name: AKUN1
+    server: 104.22.5.240
     port: 443
     type: vmess
-    uuid: 8dc999af-0f59-4f4f-aec7-9c32df4d6805
+    uuid: d8e510da-f907-47f8-a4be-f16d44c23c7e
     alterId: 0
     cipher: auto
     tls: true
     skip-cert-verify: true
-    servername: sg7.natanvpn.xyz
+    servername: idcx6.natanvpn.store
     network: ws
     ws-opts:
-      path: /vmess
+      path: /upvmess
       headers:
-        Host: sg7.natanvpn.xyz
+        Host: idcx6.natanvpn.store
     udp: true
-  - name: enet46
-    server: app.gopay.co.id
+  - name: AKUN2
+    server: 104.22.5.240
     port: 443
     type: vmess
-    uuid: 46bdb925-1dca-4a54-aa37-b0de26223b8c
-    alterId: 0
+    uuid: eae50e84-4b0e-49af-9208-5b75c3d39041
     cipher: auto
     tls: true
     skip-cert-verify: true
-    servername: id2.natanvpn.xyz
+    servername: id8.natanvpn.store
     network: ws
     ws-opts:
-      path: /vmess
+      path: /upvmess
       headers:
-        Host: id2.natanvpn.xyz
+        Host: id8.natanvpn.store
     udp: true
-  - name: vvip-sakai01
-    server: app.gopay.co.id
-    port: 443
-    type: vmess
-    uuid: 86ad8e87-b0a2-43d5-ac71-f389a5eca4c3
-    alterId: 0
-    cipher: auto
-    tls: true
-    skip-cert-verify: true
-    servername: cdn-sg3ray.jagoan.vip
-    network: ws
-    ws-opts:
-      path: /vvip
-      headers:
-        Host: cdn-sg3ray.jagoan.vip
-    udp: true
+
 proxy-groups:
-  - name: FASTSSH-SSHKIT-HOWDY
-    type: select
-    proxies:
-      - digi13
-      - enet46
-      - vvip-sakai01
-      - LOAD-BALANCE
-      - DIRECT
-  - name: LOAD-BALANCE
-    type: load-balance
-    strategy: consistent-hashing
-    url: http://hi.bonds.id/ping
+  - name: ID-X
+    type: fallback
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - digi13
-      - enet46
-      - vvip-sakai01
+      - AKUN1
+      - AKUN2
+
+  - name: MIX-X
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - AKUN1
+      - AKUN2
+      
+  - name: IKLAN
+    type: select
+    proxies:
+     - MIX-X
+     - REJECT
+
+  - name: GAME
+    type: select
+    proxies:
+     - ID-X
+     - DIRECT
+     - REJECT
+
 rules:
-  - MATCH,FASTSSH-SSHKIT-HOWDY
+ - IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+ - RULE-SET,Block,IKLAN
+ - RULE-SET,Game,GAME
+ - RULE-SET,Umum,MIX-X
+ - RULE-SET,indo,ID-X
+ - RULE-SET,Sosmed,MIX-X
+ - RULE-SET,Streaming,MIX-X
+ - RULE-SET,Bankid,ID-X
+ - RULE-SET,Tiktok,MIX-X
+ - RULE-SET,Meta,MIX-X
+ - RULE-SET,PortGame,GAME
+ - MATCH,MIX-X
+
+
+rule-providers:
+  Game:
+    type: file
+    behavior: classical
+    path: ./game.yaml 
+  PortGame:
+    type: file
+    behavior: classical
+    path: ./portgame.yaml
+  Umum:
+    type: file
+    behavior: classical
+    path: ./umum.yaml 
+  indo:
+    type: file
+    behavior: classical
+    path: ./indo.yaml
+  Sosmed:
+    type: file
+    behavior: classical
+    path: ./sosmed.yaml
+  Streaming:
+    type: file
+    behavior: classical
+    path: ./streaming.yaml
+  Bankid:
+    type: file
+    behavior: domain
+    path: ./bankid.yaml
+  Tiktok:
+    type: file
+    behavior: domain
+    path: ./tiktok.yaml
+  Meta:
+    type: file
+    behavior: domain
+    path: ./meta.yaml
+  Block:
+    type: file
+    behavior: domain
+    path: ./block.yaml  
