@@ -33,50 +33,50 @@ dns:
     - 112.215.203.254
 proxies:
   - name: AKUN1
-    server: quiz.int.vidio.com
-    port: 80
+    server: 104.22.5.240
+    port: 443
     type: vmess
-    uuid: 396415b0-6f7d-4df3-9d50-1a3ff9115b1a
+    uuid: d8e510da-f907-47f8-a4be-f16d44c23c7e
     alterId: 0
     cipher: auto
     tls: false
     skip-cert-verify: true
-    servername: id2-ray.ipservers.xyz
+    servername: idcx6.natanvpn.store
     network: ws
     ws-opts:
-      path: /JAGOANSSH/
+      path: /upvmess
       headers:
-        Host: id2-ray.ipservers.xyz
+        Host: idcx6.natanvpn.store
     udp: true
   - name: AKUN2
-    server: quiz.int.vidio.com
+    server: 104.22.5.240
     port: 443
     type: vless
-    uuid: 9cf9a9b0-2e2e-45bd-ac6f-5eaa44e30cfe
+    uuid: eae50e84-4b0e-49af-9208-5b75c3d39041
     cipher: auto
     tls: true
     skip-cert-verify: true
-    servername: id1vless.ipservers.xyz
+    servername: id8.natanvpn.store
     network: ws
     ws-opts:
       path: /jagoanssh
       headers:
-        Host: id1vless.ipservers.xyz
+        Host: id8.natanvpn.store
     udp: true
   - name: AKUN3
-    server: quiz.int.vidio.com
+    server: 104.22.5.240
     port: 443
     type: vless
-    uuid: aae98731-898a-4cd3-8c7f-d09af2387d63
+    uuid: de8108ad-998b-475a-8c46-1efaac1b0c4c
     cipher: auto
     tls: true
     skip-cert-verify: true
-    servername: id2vless.ipservers.xyz
+    servername: sg3ray.jagoanvip.xyz
     network: ws
     ws-opts:
-      path: /jagoanssh
+      path: /vvip
       headers:
-        Host: id2vless.ipservers.xyz
+        Host: sg3ray.jagoanvip.xyz
     udp: true
 
 proxy-groups:
